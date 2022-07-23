@@ -10,7 +10,7 @@ while True:
     
     _type = input('[1] Encode Morse from Text\n[2] Decode Morse\n')
 
-    if _type.lower() == "1":
+    if _type == "1":
        
         encode()
 
@@ -22,7 +22,7 @@ while True:
             print("Thank you for using my translator!")
             break
 
-    elif _type.lower() == "2":
+    elif _type == "2":
         
         decode()
 
