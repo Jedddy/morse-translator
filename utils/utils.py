@@ -127,4 +127,5 @@ def decode():
     print("-" * 50 + "\nDecoded Morse Code: " + decrypted + "\n" + "-" * 50)
     save_to_file(decrypted, morse=True)
     print("Saved into logs.txt")
+    print("-" * 50)
     
