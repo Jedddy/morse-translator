@@ -20,18 +20,10 @@ def encrypt_text(texts):
     
     texts = " ".join(texts.split())
 
-    msg = ""
-    
     """Loop over the string and check if it matches any dict key
     and add the value to the msg variable if it does match and return the text if it doesn't match anything from the di.
     """
-    for text in texts.upper():
-        if text in morse.keys():
-            msg += morse.get(text) + " "
-        else:
-            msg += text
-    
-    return msg
+    return "".join(f"{morse.get(text)} " if text in morse.keys() else text for text in texts.upper())
 
 
 def decrypt_text(codes):
@@ -42,18 +34,10 @@ def decrypt_text(codes):
 
     codes = codes.split()
 
-    msg = ""
-
     """Loop over the list returned by the split function and check if it matches any dict key
     and add the value to the msg variable if it does match and return "#" if the character is not a morse code.
     """
-    for code in codes:
-        if code in text.keys():
-            msg += text[code]
-        else:
-            msg += "#"
-    
-    return msg
+    return "".join(text[code] if code in text.keys() else "#" for code in codes)
 
 
 def save_to_file(texts, morse=False):
@@ -71,13 +55,11 @@ def save_to_file(texts, morse=False):
 
 def save_audio(folder, audio_file):
     date = datetime.datetime.now()
-    formatted_date = date.strftime("%Y_%d_%H_%M_%S") #Adding Date Values to the sound file so we wont overwrite a soundfile for having the same name
-    file = audio_file.export(f"./{folder}/exported_morse{formatted_date}.wav")
-    
-    return file
+    formatted_date = date.strftime("%Y_%d_%H_%M_%S") # Adding Date Values to the sound file so we wont overwrite a soundfile for having the same name
+    return audio_file.export(f"./{folder}/exported_morse{formatted_date}.wav")
 
 
-def encode():
+def encode():  # sourcery skip: remove-pass-elif, switch
     text = input("Input Text: ")
 
     encrypted = encrypt_text(text)
@@ -102,7 +84,7 @@ def encode():
                 starting_audio += dot
             elif i == "-":
                 starting_audio += dash
-            elif i == " " or "/":
+            else:
                 starting_audio += silence
         
         try:

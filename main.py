@@ -11,14 +11,9 @@ while True:
     _type = input('[1] Encode Morse from Text\n[2] Decode Morse\n')
 
     if _type == "1":
-       
         encode()
-
         choice = input("Translate another one? [Y/N]: \n" + "-" * 50 + "\n").lower()
-
-        if choice == "y":
-            pass
-        else:
+        if choice != "y":
             print("Thank you for using my translator!")
             break
 
@@ -27,9 +22,7 @@ while True:
         decode()
 
         choice = input("Translate another one? [Y/N]\n" + "-" * 50 + "\n").lower()
-        if choice == "y":
-            pass
-        else:
+        if choice != "y":
             print("Thank you for using my translator!")
             break
 
